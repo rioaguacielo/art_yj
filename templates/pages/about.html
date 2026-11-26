@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+{% block title %}여주예총 소개 · {% endblock %}
+{% block main %}
+<section class="page-head">
+  <div class="wrap">
+    <span class="label">About</span>
+    <h1>여주예총</h1>
+    <p>{{ site.fullname }}. 여주 지역 예술문화인의 친목과 권익을 지키고, 향토예술을 꽃피우기 위해 {{ site.founded }}에 창립했습니다.</p>
+    <nav class="subnav" aria-label="소개 바로가기">
+      <a href="#greeting">인사말</a><a href="#overview">개요</a><a href="#charter">예술문화인 헌장</a><a href="#symbol">심벌마크</a><a href="#org">임원·조직</a><a href="#location">오시는 길</a>
+    </nav>
+  </div>
+</section>
+
+<div class="wrap">
+  <section class="two" id="greeting">
+    <h2><span class="label">Greeting</span>인사말</h2>
+    <div class="prose">
+      <p>안녕하십니까?</p>
+      <p>여주예총 제7대 지회장으로 취임한 {{ site.officers.president.name }}입니다. 봄바람이 꽃향기를 실어 나르는 이 아름다운 계절에 회원 여러분께 인사드릴 수 있어 한없이 기쁘게 생각합니다. 아울러 저를 이 자리에 세워주신 회원 여러분께 진심으로 깊은 감사의 말씀을 전합니다.</p>
+      <p>문화예술은 우리 사회의 정신적 기둥이며, 지역 공동체의 정체성을 형성하는 중요한 역할을 합니다. 여주예총은 그동안 지역 예술인들의 창작 활동을 지원하고, 다양한 문화예술 프로그램을 통해 지역 사회와 소통해 왔습니다.</p>
+      <p>제7대 회장으로서 저는 회원들과 정기적인 소통의 장을 마련하고, 다양한 의견을 수렴하여 회원 간의 유대감을 강화하고, 예술인 역량 강화와 지역 사회와의 협력 증진, 지역 기관 및 단체와의 협력을 통해 문화예술의 저변을 확대하고, 지역 사회와의 상생을 도모하겠습니다.</p>
+      <p>시 한 편을 읽으면서, 그림 한 점을 관람하면서, 아름다운 음악을 감상하면서, 흥겨운 우리 소리를 즐기면서, 사진 한 장, 영화 한 편을 감상하면서 서로를 사랑하고 사랑받는 예총이 될 수 있도록 최선을 다해 노력하겠습니다.</p>
+      <p>여주예총은 국악협회, 문인협회, 미술협회, 사진작가협회, 음악협회, 영화인협회 6개 협회의 회원 한분 한분의 열정과 노력이 모여 만들어가는 공동체입니다. 앞으로도 많은 관심과 참여를 부탁드리며, 최고의 문화예술단체로 성장하는 여주예총을 만들어가겠습니다.</p>
+      <p>감사합니다.</p>
+      <p><strong>여주예총 제7대 지회장 {{ site.officers.president.name }}</strong></p>
+    </div>
+  </section>
+
+  <section class="two" id="overview">
+    <h2><span class="label">Overview</span>개요</h2>
+    <div>
+      <dl class="facts">
+        <dt>단체명</dt><dd>{{ site.fullname }} (약칭: 여주예총)</dd>
+        <dt>창립일</dt><dd>{{ site.founded }}</dd>
+        <dt>지회장</dt><dd>{{ site.officers.president.name }}</dd>
+        <dt>주소</dt><dd>{{ site.address }}</dd>
+        <dt>연락처</dt><dd>전화 {{ site.tel }} · 팩스 {{ site.fax }}</dd>
+        <dt>이메일</dt><dd><a href="mailto:{{ site.email }}">{{ site.email }}</a></dd>
+      </dl>
+      <div class="prose" style="margin-top:48px">
+        <p><strong>창립 목적</strong><br />여주예총은 예술문화인 상호간의 친목을 도모하고 회원의 권익을 옹호하며, 향토예술의 창달로 여주 지역 사회의 예술문화 발전에 기여함을 목적으로 합니다.</p>
+        <p><strong>주요 사업</strong><br />여주 지역 회원 상호간의 친목을 도모하는 사업 · 회원의 사회적 지위 향상과 권익을 옹호하는 사업 · 예술문화 창달을 위한 사업 · 지역 간의 예술문화 교류 사업 · 지방예술의 발굴 소개 및 보존 사업 · 본 지부 설립 목적을 달성하기 위한 부대 사업</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="two" id="charter">
+    <h2><span class="label">Charter</span>예술문화인 헌장</h2>
+    <div class="charter">
+      <p>우리는 민족중흥의 역사적 전환기에 처하여 새로운 문화창조의 사명감을 절감한다. 한 겨레의 운명을 결정짓는 근원적인 힘은 그 민족적 예술적 문화적 창의력이다. 예술이 창의력을 잃었을 때 겨레는 침체되고 문화가 자주성을 찾았을 때 겨레는 흥한다. 신라통일의 위대한 업적과 세종 시대의 문화창조는 이를 증명한다.</p>
+      <p>우리는 길이 남을 유산을 개발하고 민족적 정통성을 이어받아 오늘의 새 문화를 창조한다. 맹목적인 복고경향을 경계하고 분별없는 모방행위를 배제하며 척박한 유발풍조를 일소하여 우리 예술을 확고한 전통 속에 꽃피우고 우리 문화를 튼튼한 주체성에 뿌리박게 한다.</p>
+      <p>우리는 조국의 현실을 직시하고 영광된 겨레의 내일을 위하여 자치의식과 사관을 바로잡고 표현의 자유와 문화의 자주성을 함께 누리며, 곳곳마다 문화의 전당을 세워 온 겨레가 함께 예술을 즐기도록 한다.</p>
+      <p>우리는 자신의 자세를 새롭게 가다듬어 우리의 업적이 세계에 부각되도록 힘쓰며 문화의 활발한 국제교류를 통하여 인류문화에 이바지할 것을 다짐한다.</p>
+      <p>이에 모든 예술가 문화인들은 온 국민과 동참하는 대열에 서서 예술과 문화를 아끼고 사랑하는 풍토를 조성하고 정성을 다해 문예중흥을 이룰 것을 선언한다.</p>
+    </div>
+  </section>
+
+  <section class="two" id="symbol">
+    <h2><span class="label">Symbol</span>심벌마크</h2>
+    <div class="prose">
+      <p>예총을 상징하는 심벌마크는 깊고 굵은 문화의 뿌리와 나무를 상징하며, 오늘을 사는 예술문화인의 정신적 자세와 긍지, 발전을 나타냅니다. 예총은 예술인에 의해 이루어지고 그들이 회원이라는 점에서, 서로 등을 맞대고 의지하여 커 감을 상징적으로 나타냈습니다.</p>
+      <p>심벌의 색은 흰 바탕에 브라운(갈색)으로, 토속적인 전통의 한국문화를 상징하며 튼튼한 나무기둥의 색과도 일치해 아무리 바람이 불어도 쓰러지지 않는 예술문화를 뜻합니다. 이 마크는 미술협회 회원이자 성균관대학교 생활미술과 교수였던 백금남 씨가 CIP 개념을 도입해 도안했습니다.</p>
+    </div>
+  </section>
+
+  <section class="two" id="org">
+    <h2><span class="label">Organization</span>임원·조직</h2>
+    <div>
+      {% set o = site.officers %}
+      <div class="org-top">
+        <div><span>지회장</span><b>{{ o.president.name }}</b><span>{{ o.president.org }}</span></div>
+        <div><span>고문</span><b>{{ o.advisor|join(', ') }}</b></div>
+        <div><span>감사</span><b>{% for x in o.auditors %}{{ x.name }}{% if not loop.last %}, {% endif %}{% endfor %}</b><span>{% for x in o.auditors %}{{ x.org }}{% if not loop.last %} · {% endif %}{% endfor %}</span></div>
+      </div>
+      <table class="org-table">
+        <thead><tr><th scope="col">협회</th><th scope="col">부지회장</th><th scope="col">이사</th></tr></thead>
+        <tbody>
+          {% for a in assocs %}
+          <tr style="--c: {{ a.color }}">
+            <th scope="row"><i></i><a href="{{ a.url }}">{{ a.name }}</a></th>
+            <td>{% for v in o.vice if v.org == a.name %}{{ v.name }}{% endfor %}</td>
+            <td>{% for d in o.directors if d.org == a.name %}{{ d.name }}{% if not loop.last %}, {% endif %}{% endfor %}</td>
+          </tr>
+          {% endfor %}
+          <tr><th scope="row">사무국</th><td colspan="2">{% for s in o.secretariat %}{{ s.role }} {{ s.name }}{% if not loop.last %} · {% endif %}{% endfor %}</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="two" id="location" style="border-bottom:none">
+    <h2><span class="label">Location</span>오시는 길</h2>
+    <div>
+      <dl class="facts">
+        <dt>주소</dt><dd>{{ site.address }}</dd>
+        <dt>전화</dt><dd><a href="tel:{{ site.tel|replace('-', '') }}">{{ site.tel }}</a></dd>
+        <dt>팩스</dt><dd>{{ site.fax }}</dd>
+      </dl>
+      <p style="margin-top:32px; display:flex; gap:12px; flex-wrap:wrap">
+        <a class="btn" href="https://map.naver.com/p/search/{{ site.address|urlencode }}" rel="noopener">네이버 지도</a>
+        <a class="btn" href="https://map.kakao.com/?q={{ site.address|urlencode }}" rel="noopener">카카오맵</a>
+      </p>
+    </div>
+  </section>
+</div>
+{% endblock %}

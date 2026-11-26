@@ -1,0 +1,220 @@
+# Pages CMS 설정 — https://app.pagescms.org 에서 이 저장소를 열면 아래 메뉴가 글쓰기 화면에 나타납니다.
+# 업로드한 사진은 저장소에 올라간 뒤 GitHub Actions가 긴 변 1600px 이하로 자동으로 줄입니다.
+media:
+  - name: images
+    label: 사진
+    input: uploads/images
+    output: /uploads/images
+    rename: safe
+    categories: [image]
+  - name: files
+    label: 첨부파일
+    input: uploads/files
+    output: /uploads/files
+    rename: false
+    categories: [document, spreadsheet, compressed, video, audio, image]
+
+content:
+  - name: notice
+    label: "공지사항"
+    type: collection
+    path: content/notice
+    format: yaml-frontmatter
+    filename: "{year}-{month}-{day}-{hour}{minute}{second}.md"
+    view:
+      fields: [title, date]
+      primary: title
+      sort: [date, title]
+      default:
+        sort: date
+        order: desc
+    fields:
+      - name: title
+        label: 제목
+        type: string
+        required: true
+      - name: date
+        label: 작성일
+        type: date
+        options:
+          time: true
+          format: "yyyy-MM-dd HH:mm"
+      - name: author
+        label: 작성자
+        type: string
+        default: 여주예총
+      - name: attachments
+        label: 첨부파일
+        type: object
+        list: true
+        fields:
+          - name: file
+            label: 파일
+            type: file
+            options:
+              media: files
+          - name: name
+            label: 표시할 파일 이름
+            type: string
+      - name: draft
+        label: 숨기기
+        type: boolean
+        default: false
+      - name: body
+        label: 본문
+        type: rich-text
+        options:
+          format: html
+          media: images
+  - name: events
+    label: "행사·축제"
+    type: collection
+    path: content/events
+    format: yaml-frontmatter
+    filename: "{year}-{month}-{day}-{hour}{minute}{second}.md"
+    view:
+      fields: [title, date]
+      primary: title
+      sort: [date, title]
+      default:
+        sort: date
+        order: desc
+    fields:
+      - name: title
+        label: 제목
+        type: string
+        required: true
+      - name: date
+        label: 작성일
+        type: date
+        options:
+          time: true
+          format: "yyyy-MM-dd HH:mm"
+      - name: author
+        label: 작성자
+        type: string
+        default: 여주예총
+      - name: attachments
+        label: 첨부파일
+        type: object
+        list: true
+        fields:
+          - name: file
+            label: 파일
+            type: file
+            options:
+              media: files
+          - name: name
+            label: 표시할 파일 이름
+            type: string
+      - name: draft
+        label: 숨기기
+        type: boolean
+        default: false
+      - name: body
+        label: 본문
+        type: rich-text
+        options:
+          format: html
+          media: images
+  - name: gallery
+    label: "포토갤러리"
+    type: collection
+    path: content/gallery
+    format: yaml-frontmatter
+    filename: "{year}-{month}-{day}-{hour}{minute}{second}.md"
+    view:
+      fields: [title, date]
+      primary: title
+      sort: [date, title]
+      default:
+        sort: date
+        order: desc
+    fields:
+      - name: title
+        label: 제목
+        type: string
+        required: true
+      - name: date
+        label: 작성일
+        type: date
+        options:
+          time: true
+          format: "yyyy-MM-dd HH:mm"
+      - name: author
+        label: 작성자
+        type: string
+        default: 여주예총
+      - name: attachments
+        label: 첨부파일
+        type: object
+        list: true
+        fields:
+          - name: file
+            label: 파일
+            type: file
+            options:
+              media: files
+          - name: name
+            label: 표시할 파일 이름
+            type: string
+      - name: draft
+        label: 숨기기
+        type: boolean
+        default: false
+      - name: body
+        label: 본문
+        type: rich-text
+        options:
+          format: html
+          media: images
+  - name: associations
+    label: "회원단체 소개"
+    type: collection
+    path: content/associations
+    format: yaml-frontmatter
+    view:
+      fields: [name, head]
+      primary: name
+      sort: [order]
+      default:
+        sort: order
+        order: asc
+    fields:
+      - name: name
+        label: 협회 이름(짧게)
+        type: string
+        required: true
+      - name: fullname
+        label: 정식 명칭
+        type: string
+      - name: en
+        label: 영문 이름
+        type: string
+      - name: order
+        label: 순서
+        type: number
+      - name: color
+        label: 대표 색
+        type: string
+        description: "예) #2B4C7E"
+      - name: head
+        label: 대표자 이름
+        type: string
+      - name: head_title
+        label: 대표자 직함
+        type: string
+      - name: tagline
+        label: 한 줄 소개
+        type: string
+      - name: image
+        label: 대표자·협회 사진
+        type: image
+        options:
+          media: images
+      - name: body
+        label: 인사말
+        type: rich-text
+        options:
+          format: html
+          media: images

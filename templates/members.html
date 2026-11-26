@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}회원단체 · {% endblock %}
+{% block main %}
+<section class="page-head">
+  <div class="wrap">
+    <span class="label">Members</span>
+    <h1>회원단체</h1>
+    <p>문학, 사진, 미술, 음악, 국악, 영화. 여섯 협회가 저마다의 언어로 여주를 그립니다.</p>
+  </div>
+</section>
+<section class="section" style="padding-top:64px">
+  <div class="wrap">
+    <div class="members">
+      {% for a in assocs %}
+      <a class="member" href="{{ a.url }}" style="--c: {{ a.color }}">
+        <span class="no">0{{ loop.index }}</span>
+        <h3>{{ a.name }}</h3>
+        <span class="en">{{ a.en }}</span>
+        <p>{{ a.tagline }}</p>
+        <span class="head">{{ a.fullname }}<br />{{ a.head_title }} {{ a.head }}</span>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}

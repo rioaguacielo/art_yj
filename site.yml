@@ -1,0 +1,66 @@
+# 사이트 설정 — 이 파일만 고치면 메뉴, 게시판, 연락처, 임원 명단이 바뀝니다.
+title: 여주예총
+fullname: 사단법인 한국예총 경기도연합회 여주지회
+title_en: Yeoju Federation of Arts & Culture
+description: 문학·사진·미술·음악·국악·영화, 여주의 예술가들이 함께하는 사단법인 한국예총 경기도연합회 여주지회입니다.
+# 정식 오픈 전에는 true (상단 '리뉴얼 시안' 안내 표시, 검색엔진 차단)
+draft: true
+# GitHub Pages 주소의 하위 경로. 자체 도메인(yeojuart.co.kr)으로 옮기면 "" 로 바꿉니다.
+baseurl: /art_yj
+old_site: http://www.yeojuart.co.kr/
+
+founded: 2001년 4월 7일
+address: 경기도 여주시 청심로 88
+tel: 031-886-5007
+fax: 031-886-5003
+email: les305@naver.com
+
+nav:
+  - { key: about, label: 여주예총, url: /about.html }
+  - { key: members, label: 회원단체, url: /members/ }
+  - { key: events, label: 행사·축제, url: /events/ }
+  - { key: notice, label: 공지사항, url: /notice/ }
+  - { key: gallery, label: 갤러리, url: /gallery/ }
+
+# 게시판. type: list(목록형) / gallery(사진형)
+boards:
+  notice:  { label: 공지사항, en: Notice, type: list }
+  events:  { label: 행사·축제, en: Events, type: list }
+  gallery: { label: 포토갤러리, en: Gallery, type: gallery }
+
+# 임원 (연락처는 개인정보라 싣지 않습니다)
+officers:
+  president: { name: 김정우, org: 국악협회 }
+  advisor: [박찬수]
+  auditors:
+    - { name: 유진영, org: 미술협회 }
+    - { name: 이선주, org: 사진작가협회 }
+  vice:
+    - { name: 경은호, org: 문인협회 }
+    - { name: 홍창희, org: 사진작가협회 }
+    - { name: 김연아, org: 음악협회 }
+    - { name: 박종문, org: 미술협회 }
+    - { name: 이승희, org: 국악협회 }
+    - { name: 정귀영, org: 영화인협회 }
+  directors:
+    - { name: 조용봉, org: 문인협회 }
+    - { name: 이상하, org: 문인협회 }
+    - { name: 한정자, org: 사진작가협회 }
+    - { name: 김영순, org: 사진작가협회 }
+    - { name: 백계옥, org: 미술협회 }
+    - { name: 이현미, org: 미술협회 }
+    - { name: 김아름, org: 음악협회 }
+    - { name: 이은희, org: 음악협회 }
+    - { name: 김달선, org: 국악협회 }
+    - { name: 배향란, org: 국악협회 }
+    - { name: 이환홍, org: 영화인협회 }
+    - { name: 오요섭, org: 영화인협회 }
+  secretariat:
+    - { role: 사무국장, name: 이은선 }
+    - { role: 사무차장, name: 함경미 }
+
+links:
+  - { label: 문화체육관광부, url: "http://www.mcst.go.kr/" }
+  - { label: 한국예총, url: "http://www.yechong.or.kr/" }
+  - { label: 경기예총, url: "http://www.ggac.or.kr/" }
+  - { label: 여주시청, url: "http://www.yj21.net" }

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{% block title %}{% endblock %}{{ site.title }} · {{ site.fullname }}{% if site.draft %} (리뉴얼 시안){% endif %}</title>
+  <meta name="description" content="{% block description %}{{ site.description }}{% endblock %}" />
+  <meta property="og:title" content="{{ site.title }} — {{ site.fullname }}" />
+  <meta property="og:description" content="{{ site.description }}" />
+  <meta property="og:type" content="website" />
+  {% if site.draft %}<meta name="robots" content="noindex" />{% endif %}
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
+  <link rel="stylesheet" href="{{ base }}/css/style.css?v={{ build_id }}" />
+</head>
+<body>
+  <a class="skip" href="#main">본문 바로가기</a>
+  {% if site.draft %}<div class="notice-bar">이 페이지는 홈페이지 <b>리뉴얼 시안</b>입니다. 현재 공식 사이트는 <a href="{{ site.old_site }}" rel="noopener">yeojuart.co.kr</a> 입니다.</div>{% endif %}
+  <header class="site-header">
+    <div class="wrap">
+      <a href="{{ base }}/" class="brand" aria-label="{{ site.title }} 홈">
+        <span class="seal" aria-hidden="true">藝</span>
+        <span class="brand-text"><b>{{ site.title }}</b><small>YEOJU ARTS</small></span>
+      </a>
+      <button class="menu-toggle" aria-expanded="false" aria-controls="menu">메뉴</button>
+      <ul class="menu" id="menu">
+        {% for item in site.nav %}
+        <li><a href="{{ base }}{{ item.url }}"{% if nav == item.key %} aria-current="page"{% endif %}>{{ item.label }}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+  </header>
+  <main id="main">
+{% block main %}{% endblock %}
+  </main>
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="foot-top">
+        <div class="brand">
+          <span class="seal" aria-hidden="true">藝</span>
+          <span class="brand-text"><b>{{ site.title }}</b><small>{{ site.fullname }}</small></span>
+        </div>
+        <dl class="foot-info">
+          <dt>주소</dt><dd>{{ site.address }}</dd>
+          <dt>전화</dt><dd><a href="tel:{{ site.tel|replace('-', '') }}">{{ site.tel }}</a> · 팩스 {{ site.fax }}</dd>
+          <dt>이메일</dt><dd><a href="mailto:{{ site.email }}">{{ site.email }}</a></dd>
+        </dl>
+      </div>
+      <div class="foot-bottom">
+        <span>© {{ year }} {{ site.fullname }}{% if site.draft %} · 리뉴얼 시안{% endif %}</span>
+        <nav aria-label="관련 사이트">{% for l in site.links %}<a href="{{ l.url }}" rel="noopener">{{ l.label }}</a>{% endfor %}</nav>
+      </div>
+    </div>
+  </footer>
+  <script>
+    const t = document.querySelector('.menu-toggle'), m = document.getElementById('menu'), h = document.querySelector('.site-header');
+    t.addEventListener('click', () => { const o = m.classList.toggle('open'); t.setAttribute('aria-expanded', o); });
+    const onScroll = () => h.classList.toggle('scrolled', scrollY > 8); addEventListener('scroll', onScroll, { passive: true }); onScroll();
+  </script>
+  {% block scripts %}{% endblock %}
+</body>
+</html>

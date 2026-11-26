@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% block title %}{{ board.label }} · {% endblock %}
+{% block main %}
+<section class="page-head">
+  <div class="wrap">
+    <span class="label">{{ board.en }}</span>
+    <h1>{{ board.label }}</h1>
+    <nav class="subnav" aria-label="게시판">
+      {% for b in boards.values() %}<a href="{{ base }}/{{ b.key }}/"{% if b.key == board.key %} class="on" aria-current="page"{% endif %}>{{ b.label }}</a>{% endfor %}
+    </nav>
+  </div>
+</section>
+<section class="section" style="padding-top:48px">
+  <div class="wrap">
+    {% if not items %}
+    <p class="empty">아직 등록된 글이 없습니다.</p>
+    {% elif board.type == 'gallery' %}
+    <div class="masonry">
+      {% for p in items %}
+      <a href="{{ p.url }}">
+        {% if p.thumb %}<img src="{{ p.thumb }}" alt="" loading="lazy" />{% else %}<div class="noimg">사진 없음</div>{% endif %}
+        <p><span>{{ p.title }}</span><time>{{ p.date.strftime('%Y') }}</time></p>
+      </a>
+      {% endfor %}
+    </div>
+    {% else %}
+    <ul class="board-list" id="list">
+      {% for p in items %}
+      <li data-i="{{ loop.index0 }}"><a href="{{ p.url }}">
+        <span class="no">{{ items|length - loop.index0 }}</span>
+        <span class="t">{{ p.title }}{% if p.attachments %} <span class="clip" style="color:var(--seal);font-size:12px;font-weight:600">첨부 {{ p.attachments|length }}</span>{% endif %}{% if p.summary and p.summary != p.title %}<span class="s">{{ p.summary }}</span>{% endif %}</span>
+        <time datetime="{{ p.date.strftime('%Y-%m-%d') }}">{{ p.date_str }}</time>
+      </a></li>
+      {% endfor %}
+    </ul>
+    <nav class="pager" id="pager" aria-label="페이지"></nav>
+    {% endif %}
+  </div>
+</section>
+{% endblock %}
+{% block scripts %}
+{% if board.type != 'gallery' %}
+<script>
+(() => {
+  const rows = [...document.querySelectorAll('#list li')], per = 15, pager = document.getElementById('pager');
+  if (!pager || rows.length <= per) return;
+  const pages = Math.ceil(rows.length / per);
+  function show(n, scroll) {
+    rows.forEach((r, i) => r.hidden = Math.floor(i / per) !== n);
+    pager.innerHTML = '';
+    for (let i = 0; i < pages; i++) {
+      const b = document.createElement('button'); b.type = 'button'; b.textContent = i + 1;
+      if (i === n) b.setAttribute('aria-current', 'page');
+      b.addEventListener('click', () => { history.replaceState(null, '', '?page=' + (i + 1)); show(i, true); });
+      pager.appendChild(b);
+    }
+    if (scroll) document.getElementById('list').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+  const q = +(new URLSearchParams(location.search).get('page') || 1) - 1;
+  show(Math.min(Math.max(q, 0), pages - 1), false);
+})();
+</script>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}{{ post.title }} · {{ board.label }} · {% endblock %}
+{% block description %}{{ post.summary or post.title }}{% endblock %}
+{% block main %}
+<div class="wrap">
+  <article class="article">
+    <header class="article-head">
+      <a class="label" href="{{ base }}/{{ board.key }}/" style="text-decoration:none">← {{ board.label }}</a>
+      <h1>{{ post.title }}</h1>
+      <p class="meta">{{ post.author }} · <time datetime="{{ post.date.strftime('%Y-%m-%d') }}">{{ post.date_full }}</time></p>
+    </header>
+    <div class="article-body">{{ post.html|safe }}</div>
+    {% if post.attachments %}
+    <div class="files">
+      <h2>첨부파일</h2>
+      <ul>{% for f in post.attachments %}<li><a href="{{ f.url }}" download>{{ f.name }}</a>{% if f.size %}<span>{{ f.size }}</span>{% endif %}</li>{% endfor %}</ul>
+    </div>
+    {% endif %}
+    <nav class="post-nav" aria-label="이전·다음 글">
+      {% if prev %}<a href="{{ prev.url }}"><small>이전 글</small><span>{{ prev.title }}</span></a>{% else %}<span></span>{% endif %}
+      {% if next %}<a href="{{ next.url }}"><small>다음 글</small><span>{{ next.title }}</span></a>{% endif %}
+    </nav>
+    <p class="back"><a class="btn" href="{{ base }}/{{ board.key }}/">목록으로</a></p>
+  </article>
+</div>
+{% endblock %}

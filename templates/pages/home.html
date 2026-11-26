@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+{% block main %}
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <span class="label">{{ site.title_en }}</span>
+      <h1>여섯 갈래의 예술,<br /><b>하나의 여주</b><span class="dot">.</span></h1>
+      <p class="hero-lead">시 한 편을 읽고, 그림 한 점을 보고, 음악과 우리 소리를 듣고, 사진 한 장과 영화 한 편을 함께 나눕니다. 여주의 예술가들이 모인 곳, 여주예총입니다.</p>
+      <div class="hero-meta"><span>{{ site.fullname }}</span><span>Since 2001</span></div>
+    </div>
+    <div class="hero-art" aria-hidden="{{ 'false' if photos else 'true' }}">
+      {% if photos|length >= 3 %}
+      <figure class="f1"><img src="{{ photos[0] }}" alt="여주예총 행사 사진" fetchpriority="high" /></figure>
+      <figure class="f2"><img src="{{ photos[1] }}" alt="여주예총 행사 사진" /></figure>
+      <figure class="f3"><img src="{{ photos[2] }}" alt="여주예총 행사 사진" /></figure>
+      {% else %}
+      <div class="glyph">藝</div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+<nav class="arts" aria-label="회원단체">
+  <div class="wrap">
+    <ol>
+      {% for a in assocs %}
+      <li><a href="{{ a.url }}" style="--c: {{ a.color }}"><span class="no">0{{ loop.index }}</span><span class="ko">{{ a.name|replace('협회','')|replace('사진작가','사진') }}</span><span class="en">{{ a.en }}</span></a></li>
+      {% endfor %}
+    </ol>
+  </div>
+</nav>
+
+{% set ev = posts.events[:3] %}
+<section class="section white">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><span class="label">Events</span><h2>지금, <b>여주예총</b>에서</h2></div>
+      <a class="more" href="{{ base }}/events/">행사·축제 전체 보기</a>
+    </div>
+    {% if ev %}
+    <div class="events">
+      {% for p in ev %}
+      <a class="event" href="{{ p.url }}">
+        <span class="d"><b>{{ p.day }}</b><span>{{ p.month }}</span></span>
+        <h3>{{ p.title }}</h3>
+        <span class="go">자세히 보기 →</span>
+      </a>
+      {% endfor %}
+    </div>
+    {% else %}<p class="empty">기존 사이트의 행사 소식을 옮겨 오는 중입니다.</p>{% endif %}
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><span class="label">Members</span><h2>함께하는 <b>여섯 협회</b></h2></div>
+      <a class="more" href="{{ base }}/members/">회원단체 소개</a>
+    </div>
+    <div class="members">
+      {% for a in assocs %}
+      <a class="member" href="{{ a.url }}" style="--c: {{ a.color }}">
+        <span class="no">0{{ loop.index }}</span>
+        <h3>{{ a.name }}</h3>
+        <span class="en">{{ a.en }}</span>
+        <p>{{ a.tagline }}</p>
+        <span class="head">{{ a.head_title }} {{ a.head }}</span>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% if photos %}
+<section class="section dark">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><span class="label">Gallery</span><h2>기록된 <b>장면들</b></h2></div>
+      <a class="more" href="{{ base }}/gallery/">갤러리 전체 보기</a>
+    </div>
+    <div class="strip">
+      {% for p in posts.gallery[:10] %}{% if p.thumb %}<a href="{{ p.url }}" aria-label="{{ p.title }}"><img src="{{ p.thumb }}" alt="" loading="lazy" /></a>{% endif %}{% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<section class="section white">
+  <div class="wrap split">
+    <div>
+      <div class="sec-head" style="margin-bottom:32px">
+        <div><span class="label">Notice</span><h2><b>공지사항</b></h2></div>
+        <a class="more" href="{{ base }}/notice/">전체 보기</a>
+      </div>
+      {% if posts.notice %}
+      <ul class="list">
+        {% for p in posts.notice[:6] %}
+        <li><a href="{{ p.url }}"><span><span class="t">{{ p.title }}</span>{% if p.attachments %}<span class="clip">첨부</span>{% endif %}</span><time datetime="{{ p.date.strftime('%Y-%m-%d') }}">{{ p.date_str }}</time></a></li>
+        {% endfor %}
+      </ul>
+      {% else %}<p class="empty">공지사항을 옮겨 오는 중입니다.</p>{% endif %}
+    </div>
+    <blockquote class="quote">
+      <p>시 한 편을 읽으면서, 그림 한 점을 관람하면서, 아름다운 음악을 감상하면서, 흥겨운 우리 소리를 즐기면서, 사진 한 장, 영화 한 편을 감상하면서 서로를 사랑하고 사랑받는 예총이 될 수 있도록 최선을 다하겠습니다.</p>
+      <footer>여주예총 제7대 지회장 {{ site.officers.president.name }} · <a href="{{ base }}/about.html">인사말 전문</a></footer>
+    </blockquote>
+  </div>
+</section>
+{% endblock %}

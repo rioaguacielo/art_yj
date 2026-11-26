@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}{{ a.name }} · 회원단체 · {% endblock %}
+{% block description %}{{ a.fullname }} — {{ a.tagline }}{% endblock %}
+{% block main %}
+<section class="member-hero" style="--c: {{ a.color }}">
+  <div class="wrap">
+    <div>
+      <span class="label">{{ a.en }}</span>
+      <h1><b>{{ a.name }}</b></h1>
+      <p class="tag">{{ a.tagline }}</p>
+    </div>
+    <span class="big-no" aria-hidden="true">0{{ a.order }}</span>
+  </div>
+</section>
+<div class="wrap">
+  <div class="member-body">
+    <aside>
+      {% if a.image %}<img src="{{ a.image }}" alt="{{ a.head_title }} {{ a.head }}" />{% endif %}
+      {{ a.fullname }}
+      <b>{{ a.head_title }} {{ a.head }}</b>
+    </aside>
+    <div class="prose">{{ a.html|safe }}</div>
+  </div>
+  <nav class="member-nav" aria-label="다른 협회">
+    {% if prev %}<a href="{{ prev.url }}"><small>이전 협회</small>{{ prev.name }}</a>{% else %}<span></span>{% endif %}
+    {% if next %}<a href="{{ next.url }}"><small>다음 협회</small>{{ next.name }}</a>{% endif %}
+  </nav>
+</div>
+{% endblock %}
