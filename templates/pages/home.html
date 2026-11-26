@@ -100,10 +100,16 @@
       </ul>
       {% else %}<p class="empty">공지사항을 옮겨 오는 중입니다.</p>{% endif %}
     </div>
-    <blockquote class="quote">
+    <div>
+      <div class="sec-head" style="margin-bottom:32px">
+        <div><span class="label">Greeting</span><h2><b>인사말</b></h2></div>
+        <a class="more" href="{{ base }}/about.html">전문 보기</a>
+      </div>
+      <blockquote class="quote">
       <p>시 한 편을 읽으면서, 그림 한 점을 관람하면서, 아름다운 음악을 감상하면서, 흥겨운 우리 소리를 즐기면서, 사진 한 장, 영화 한 편을 감상하면서 서로를 사랑하고 사랑받는 예총이 될 수 있도록 최선을 다하겠습니다.</p>
-      <footer>여주예총 제7대 지회장 {{ site.officers.president.name }} · <a href="{{ base }}/about.html">인사말 전문</a></footer>
-    </blockquote>
+      <footer>여주예총 제7대 지회장 {{ site.officers.president.name }}</footer>
+      </blockquote>
+    </div>
   </div>
 </section>
 {% endblock %}
