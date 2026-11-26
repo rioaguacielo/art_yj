@@ -78,8 +78,12 @@
       <div><span class="label">Gallery</span><h2>기록된 <b>장면들</b></h2></div>
       <a class="more" href="{{ base }}/gallery/">갤러리 전체 보기</a>
     </div>
-    <div class="strip">
-      {% for p in posts.gallery[:10] %}{% if p.thumb %}<a href="{{ p.url }}" aria-label="{{ p.title }}"><img src="{{ p.thumb }}" alt="" loading="lazy" /></a>{% endif %}{% endfor %}
+    <div class="strip-wrap">
+      <div class="strip" id="strip" tabindex="0" aria-label="최근 갤러리 사진, 좌우로 넘겨 보기">
+        {% for p in posts.gallery[:12] %}{% if p.thumb %}<a href="{{ p.url }}" aria-label="{{ p.title }}"><img src="{{ p.thumb }}" alt="" loading="lazy" /></a>{% endif %}{% endfor %}
+      </div>
+      <button type="button" class="strip-btn prev" aria-label="이전 사진" aria-controls="strip" disabled><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <button type="button" class="strip-btn next" aria-label="다음 사진" aria-controls="strip"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
     </div>
   </div>
 </section>
@@ -112,4 +116,22 @@
     </div>
   </div>
 </section>
+{% endblock %}
+{% block scripts %}
+<script>
+(() => {
+  const strip = document.getElementById('strip'); if (!strip) return;
+  const prev = document.querySelector('.strip-btn.prev'), next = document.querySelector('.strip-btn.next');
+  const step = () => Math.max(strip.clientWidth * 0.8, 260);
+  const update = () => {
+    prev.disabled = strip.scrollLeft <= 4;
+    next.disabled = strip.scrollLeft + strip.clientWidth >= strip.scrollWidth - 4;
+  };
+  prev.addEventListener('click', () => strip.scrollBy({ left: -step(), behavior: 'smooth' }));
+  next.addEventListener('click', () => strip.scrollBy({ left: step(), behavior: 'smooth' }));
+  strip.addEventListener('scroll', update, { passive: true });
+  strip.addEventListener('keydown', e => { if (e.key === 'ArrowRight') { e.preventDefault(); next.click(); } if (e.key === 'ArrowLeft') { e.preventDefault(); prev.click(); } });
+  addEventListener('resize', update); update();
+})();
+</script>
 {% endblock %}
